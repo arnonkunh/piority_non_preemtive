@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>piority non preemtive</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
+
+    <style>
+    progress{
+        width: 600px;
+        height: 30px;   
+    }
+    </style>
+  
+  </head>
+ <body>
+    <nav class="navbar navbar-light bg-light justify-content-center">
+      <a class="navbar-brand" href="#">Priority non-preemptive scheduling</a>
+    </nav>
+    <nav class="navbar navbar-light bg-light justify-content-around">
+
+      <div style="display: flex;">
+        <label for="file" style="margin-right: 10px;">Memory :</label>
+        <progress id="memory" value="0" max="1000"></progress>
+      </div>
+      <div class="d-grid gap-2">
+        <button type="button" class="btn btn-primary" id="reset">Reset</button>
+      </div>
+
+      <a class="navbar-brand">Clock: <span id="clock">0</span></a>
+    </nav>
+    <nav class="navbar navbar-light bg-light justify-content-around">
+      <a class="navbar-brand">CPU Process: <span id="cpu">0</span></a>
+      <a class="navbar-brand">I/O Process: <span id="io">0</span></a>
+    </nav>
+    <div class="card mx-auto"
+      style="width: 100%; max-width: 95%; height: 400px; max-height:400px ;">
+      <div class="card-header ">
+        <div style="display: flex; justify-content: space-between;">
+          <h4>Job Queue</h4>
+          <div>
+            <button type="button" class="btn btn-success" id="add">Add</button>
+            <button type="button" class="btn btn-danger" id="terminate">Treminate</button>
+          </div>
+        </div>
+      </div>
+      <div style="overflow-y: auto;">
+        <table id="t_jobq" class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Process Name</th>
+              <th scope="col">Arrival Time</th>
+              <th scope="col">Priority</th>
+              <th scope="col">Burst Time</th>
+              <th scope="col">Wraiting Time</th>
+              <th scope="col">Status Process</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-6">
+        <div class="card mx-auto"
+        style="width: 100%; max-width: 95%; height: 400px; max-height:400px ;">
+        <div class="card-header ">
+          <div style="display: flex; justify-content: space-between;">
+            <h4>Ready Queue</h4>          
+          </div>
+        </div>
+        <div style="overflow-y: auto;">
+          <table id="t_readyq" class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Process Name</th>
+                <th scope="col">Priority</th>
+                <th scope="col">Wraiting Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+  
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+
+        
+      <div class="col-6" >
+        <div class="card mx-auto"
+        style="width: 100%; max-width: 95%; height: 400px; max-height:400px ;">
+        <div class="card-header ">
+          <div style="display: flex; justify-content: space-between;">
+            <h4>USB Device</h4>
+            <div>
+              <button type="button" class="btn btn-success" id="use">Use</button>
+              <button type="button" class="btn btn-danger" id="close">Close</button>
+            </div>
+          </div>
+        </div>
+        <div style="overflow-y: auto;">
+          <table id="t_io" class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Process Name</th>
+                <th scope="col">Running Time</th>
+                <th scope="col">Respond Time</th>
+                <th scope="col">Status Process</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+  
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+    </div>
+    </body>
+ 
+    <script src="controller/jobqcontroller.js"></script>
+    <script src="controller/onloadcontronller.js"></script>
+    <script src="model/jobq.js"></script>
+    <script src="controller/readyqcontroller.js"></script>
+    <script src="model/readyq.js"></script>
+    <script src="model/PCB.js"></script>
+    <script src="view/jobqview.js"></script>
+    <script src="view/stateview.js"></script>
+    <script src="view/readyqview.js"></script>
+    <script src="controller/iocontroller.js"></script>
+    <script src="model/ioq.js"></script>
+    <script src="view/ioqview.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>
